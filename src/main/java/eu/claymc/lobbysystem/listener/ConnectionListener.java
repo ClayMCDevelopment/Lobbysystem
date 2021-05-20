@@ -1,17 +1,13 @@
 package eu.claymc.lobbysystem.listener;
 
-import eu.claymc.lobbysystem.Lobbysystem;
 import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.claymc.lobbysystem.manager.ItemManager;
-import eu.claymc.lobbysystem.utils.Data;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.util.Vector;
 
 public class ConnectionListener implements Listener {
 
@@ -26,6 +22,7 @@ public class ConnectionListener implements Listener {
         player.setHealth(20);
         player.setFoodLevel(20);
         player.setGameMode(GameMode.SURVIVAL);
+        player.setLevel(2021);
 
     }
 

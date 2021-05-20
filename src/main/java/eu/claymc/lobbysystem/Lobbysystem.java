@@ -1,9 +1,9 @@
 package eu.claymc.lobbysystem;
 
+import eu.claymc.lobbysystem.items.*;
 import eu.claymc.lobbysystem.listener.ConnectionListener;
 import eu.claymc.lobbysystem.listener.ProtectionListener;
 import eu.claymc.lobbysystem.manager.ParticleManager;
-import eu.claymc.lobbysystem.scheduler.ParticleScheduler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,11 +33,13 @@ public class Lobbysystem extends JavaPlugin {
 
         pluginManager.registerEvents(new ConnectionListener(), this);
         pluginManager.registerEvents(new ProtectionListener(), this);
+        pluginManager.registerEvents(new NavigatorItem(), this);
+        pluginManager.registerEvents(new GrapplingHookItem(), this);
+        pluginManager.registerEvents(new AcpItem(), this);
+        pluginManager.registerEvents(new PlayerHiderItem(), this);
+        pluginManager.registerEvents(new LobbiesItem(), this);
+        pluginManager.registerEvents(new ProfileItem(), this);
 
-    }
-
-    public void schedule() {
-        getServer().getScheduler().runTaskTimerAsynchronously(this, new ParticleScheduler(), 40, 40);
     }
 
     public static Lobbysystem getInstance() {
