@@ -41,7 +41,7 @@ public class ScoreboardManager {
 
         objective.getScore("§8§m----------------").setScore(14);
         objective.getScore("§8•§7● §7Server").setScore(13);
-        objective.getScore("§8➜ §e" + cloudPlayer.getConnectedServer().getName()).setScore(12);
+        objective.getScore("§8➜ §e" + cloudPlayer.getConnectedServerName()).setScore(12);
         objective.getScore("§1").setScore(11);
         objective.getScore("§8•§7● §7Rang").setScore(10);
 
@@ -121,7 +121,7 @@ public class ScoreboardManager {
                         scoreboard.getTeam("x6").setSuffix("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player));
                     }
                 }
-            }.runTaskTimer(Lobbysystem.getInstance(), 0, 140);
+            }.runTaskTimer(Lobbysystem.getInstance(), 0, 20);
         }catch (Exception e) {}
 
     }

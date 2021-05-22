@@ -10,6 +10,7 @@ import eu.claymc.lobbysystem.listener.ProtectionListener;
 import eu.claymc.lobbysystem.manager.ParticleManager;
 import eu.claymc.lobbysystem.manager.ScoreboardManager;
 import eu.claymc.lobbysystem.utils.Data;
+import eu.claymc.lobbysystem.utils.NPC;
 import eu.claymc.lobbysystem.utils.SkullBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
