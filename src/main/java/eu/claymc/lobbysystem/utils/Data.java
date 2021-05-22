@@ -6,7 +6,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+
 public class Data {
+
+    public ArrayList<Player> hide = new ArrayList<>();
 
     /*
     public static void sendActionbar(Player player, String message) {

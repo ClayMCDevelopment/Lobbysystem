@@ -31,7 +31,7 @@ public class PlayerHiderItem implements Listener {
                 final Inventory inventory = Bukkit.createInventory(null, InventoryType.BREWING, "§6•§e● Verstecker");
 
                 inventory.setItem(0, new ItemBuilder(Material.INK_SACK).setDurability((short) 10).setDisplayName("§2•§a● Alle").toItemStack());
-                inventory.setItem(1, new ItemBuilder(Material.INK_SACK).setDurability((short) 5).setDisplayName("§5•§d● VIP").toItemStack());
+                //inventory.setItem(1, new ItemBuilder(Material.INK_SACK).setDurability((short) 5).setDisplayName("§5•§d● VIP").toItemStack());
                 inventory.setItem(2, new ItemBuilder(Material.INK_SACK).setDurability((short) 1).setDisplayName("§4•§c● Keiner").toItemStack());
 
                 player.openInventory(inventory);

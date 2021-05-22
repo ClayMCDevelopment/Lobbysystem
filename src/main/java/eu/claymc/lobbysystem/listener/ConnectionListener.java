@@ -26,6 +26,8 @@ public class ConnectionListener implements Listener {
         player.setLevel(2021);
         Lobbysystem.getInstance().getScoreboardManager().setScoreboard(player);
 
+        Lobbysystem.getInstance().getData().hide.add(player);
+
     }
 
     @EventHandler

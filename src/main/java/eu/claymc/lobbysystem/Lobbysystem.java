@@ -1,8 +1,10 @@
 package eu.claymc.lobbysystem;
 
+import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.claymc.lobbysystem.items.*;
 import eu.claymc.lobbysystem.items.click.AcpClickListener;
 import eu.claymc.lobbysystem.items.click.NavigatorClickListener;
+import eu.claymc.lobbysystem.items.click.PlayerHiderClickListener;
 import eu.claymc.lobbysystem.listener.ConnectionListener;
 import eu.claymc.lobbysystem.listener.ProtectionListener;
 import eu.claymc.lobbysystem.manager.ParticleManager;
@@ -12,6 +14,7 @@ import eu.claymc.lobbysystem.utils.SkullBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class Lobbysystem extends JavaPlugin {
 
@@ -26,11 +29,13 @@ public class Lobbysystem extends JavaPlugin {
     public void onEnable() {
         instance = this;
         init();
+        schedule();
 
         this.particleManager = new ParticleManager();
         this.data = new Data();
         this.scoreboardManager = new ScoreboardManager();
         this.scoreboardManager.startScoreboardAnimation();
+        this.scoreboardManager.update();
 
     }
 
@@ -52,6 +57,17 @@ public class Lobbysystem extends JavaPlugin {
         pluginManager.registerEvents(new ProfileItem(), this);
         pluginManager.registerEvents(new NavigatorClickListener(), this);
         pluginManager.registerEvents(new AcpClickListener(), this);
+        pluginManager.registerEvents(new PlayerHiderClickListener(), this);
+
+    }
+    public void schedule() {
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Lobbysystem.getInstance().getParticleManager().spawnParticle(LocationEnum.SPAWN.getLocation());
+            }
+        }.runTaskTimer(Lobbysystem.getInstance(), 0, 35);
 
     }
 

@@ -3,6 +3,9 @@ package eu.claymc.lobbysystem.manager;
 import eu.claymc.api.ClayAPI;
 import eu.claymc.api.clays.ClaysSQL;
 import eu.claymc.lobbysystem.Lobbysystem;
+import eu.thesimplecloud.api.CloudAPI;
+import eu.thesimplecloud.api.player.CloudPlayer;
+import eu.thesimplecloud.api.player.ICloudPlayer;
 import eu.thesimplecloud.module.permission.PermissionPool;
 import eu.thesimplecloud.module.permission.player.IPermissionPlayer;
 import org.bukkit.Bukkit;
@@ -31,13 +34,14 @@ public class ScoreboardManager {
         final Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         final Objective objective = scoreboard.registerNewObjective("aaa", "bbb");
         final IPermissionPlayer permissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
+        final ICloudPlayer cloudPlayer = CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId());
 
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName("§6•§e● ClayMC §8▎ §7Lobby");
 
         objective.getScore("§8§m----------------").setScore(14);
         objective.getScore("§8•§7● §7Server").setScore(13);
-        objective.getScore("§8➜ §e" + player.getServer().getServerName()).setScore(12);
+        objective.getScore("§8➜ §e" + cloudPlayer.getConnectedServer().getName()).setScore(12);
         objective.getScore("§1").setScore(11);
         objective.getScore("§8•§7● §7Rang").setScore(10);
 
@@ -61,7 +65,14 @@ public class ScoreboardManager {
 
         objective.getScore("§2").setScore(8);
         objective.getScore("§8•§7● §7Clays").setScore(7);
-        objective.getScore("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player)).setScore(6);
+        //objective.getScore("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player)).setScore(6);
+
+        Team team1 = scoreboard.registerNewTeam("x6");
+        team1.setPrefix("§7");
+        team1.setSuffix("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player));
+        team1.addEntry("§6");
+        objective.getScore("§6").setScore(6);
+
         objective.getScore("§9").setScore(5);
         objective.getScore("§8•§7● §7Online").setScore(4);
         //objective.getScore("§8➜ §e" + CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName("Lobby-1").getOnlineCount()).setScore(3);
@@ -107,6 +118,7 @@ public class ScoreboardManager {
                     for (Scoreboard scoreboard : board.keySet()) {
                         Player player = board.get(scoreboard);
                         scoreboard.getTeam("x3").setSuffix("§8➜ §e" + player.getServer().getOnlinePlayers().size());
+                        scoreboard.getTeam("x6").setSuffix("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player));
                     }
                 }
             }.runTaskTimer(Lobbysystem.getInstance(), 0, 140);
