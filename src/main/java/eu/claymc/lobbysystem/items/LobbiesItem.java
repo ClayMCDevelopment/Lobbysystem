@@ -8,6 +8,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
@@ -23,18 +24,25 @@ public class LobbiesItem implements Listener {
 
         final Player player = event.getPlayer();
 
-        if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.LOBBY_SWITCHER.getItemStack().getItemMeta().getDisplayName())) {
+        if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.LOBBY_SWITCHER.getItemStack().getItemMeta().getDisplayName())) {
 
-            final Inventory inventory = Bukkit.createInventory(null, InventoryType.HOPPER, "§6•§e● Lobbies");
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
-            inventory.setItem(0, new ItemBuilder(Material.EXP_BOTTLE).setDisplayName("§6•§e● Premiumlobby-1").toItemStack());
-            inventory.setItem(1, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-1").toItemStack());
-            inventory.setItem(2, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-2").toItemStack());
-            inventory.setItem(3, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-3").toItemStack());
-            inventory.setItem(4, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-4").toItemStack());
+                final Inventory inventory = Bukkit.createInventory(null, InventoryType.HOPPER, "§6•§e● Lobbies");
 
-            player.openInventory(inventory);
-            player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
+                inventory.setItem(0, new ItemBuilder(Material.EXP_BOTTLE).setDisplayName("§6•§e● Premiumlobby-1").toItemStack());
+                inventory.setItem(1, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-1").toItemStack());
+                inventory.setItem(2, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-2").toItemStack());
+                inventory.setItem(3, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-3").toItemStack());
+                inventory.setItem(4, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-4").toItemStack());
+
+                player.openInventory(inventory);
+                player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
+
+                //Collection <ICloudService> iCloudService = CloudAPI.getInstance().getCloudServiceManager().getCloudServicesByGroupName("Lobby");
+
+
+            }
 
         }
 

@@ -11,6 +11,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -29,29 +30,31 @@ public class AcpItem implements Listener {
         final IPermissionPlayer permissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
 
 
-        if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.ADMIN_GUI.getItemStack().getItemMeta().getDisplayName())) {
+        if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.ADMIN_GUI.getItemStack().getItemMeta().getDisplayName())) {
 
             if (player.getPlayer().isSneaking()) {
 
-                if (permissionPlayer.hasPermissionGroup("Owner") || permissionPlayer.hasPermissionGroup("Admin")) {
+                if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
-                    final Inventory inventory = Bukkit.createInventory(null, 9 * 3, ItemEnum.ADMIN_GUI.getInventoryName());
-                    final ItemStack stained_glass_paine = new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack();
+                    if (permissionPlayer.hasPermissionGroup("Owner") || permissionPlayer.hasPermissionGroup("Admin")) {
 
-                    for (int i = 0; i < 27; i++) {
-                        inventory.setItem(i, stained_glass_paine);
-                    }
+                        final Inventory inventory = Bukkit.createInventory(null, 9 * 3, ItemEnum.ADMIN_GUI.getInventoryName());
+                        final ItemStack stained_glass_paine = new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack();
 
-                    inventory.setItem(10, new ItemBuilder(Material.GLOWSTONE_DUST).setDisplayName("§6•§e● Servers").toItemStack());
-                    inventory.setItem(13, new ItemBuilder(Material.REDSTONE_COMPARATOR).setDisplayName("§6•§e● Proxy-Settings").toItemStack());
-                    inventory.setItem(16, new ItemBuilder(Material.GOLD_PICKAXE).setDisplayName("§6•§e● Spielerzahl").toItemStack());
+                        for (int i = 0; i < 27; i++) {
+                            inventory.setItem(i, stained_glass_paine);
+                        }
 
-                    player.openInventory(inventory);
-                    player.playSound(player.getPlayer().getLocation(), Sound.LEVEL_UP, 10, 10);
+                        inventory.setItem(11, new ItemBuilder(Material.GLOWSTONE_DUST).setDisplayName("§6•§e● Servers").toItemStack());
+                        inventory.setItem(15, new ItemBuilder(Material.REDSTONE_COMPARATOR).setDisplayName("§6•§e● Proxy-Settings").toItemStack());
 
-                } else
-                    player.sendMessage(ClayAPI.getInstance().getPREFIX() + "§7Du kannst diese Funktion nicht nutzen!");
-                    player.playSound(player.getLocation(), Sound.NOTE_BASS, 1, 1);
+                        player.openInventory(inventory);
+                        player.playSound(player.getPlayer().getLocation(), Sound.LEVEL_UP, 10, 10);
+
+                    } else
+                        player.sendMessage(ClayAPI.getInstance().getPREFIX() + "§7Du kannst diese Funktion nicht nutzen!");
+                        player.playSound(player.getLocation(), Sound.NOTE_BASS, 1, 1);
+                }
 
             }
 

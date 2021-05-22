@@ -8,6 +8,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
@@ -25,14 +26,18 @@ public class PlayerHiderItem implements Listener {
 
         if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.PLAYER_HIDER.getItemStack().getItemMeta().getDisplayName())) {
 
-            final Inventory inventory = Bukkit.createInventory(null, InventoryType.BREWING, "§6•§e● Verstecker");
+            if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
-            inventory.setItem(0, new ItemBuilder(Material.INK_SACK).setDurability((short) 10).setDisplayName("§2•§a● Alle").toItemStack());
-            inventory.setItem(1, new ItemBuilder(Material.INK_SACK).setDurability((short) 5).setDisplayName("§5•§d● VIP").toItemStack());
-            inventory.setItem(2, new ItemBuilder(Material.INK_SACK).setDurability((short) 1).setDisplayName("§4•§c● Keiner").toItemStack());
+                final Inventory inventory = Bukkit.createInventory(null, InventoryType.BREWING, "§6•§e● Verstecker");
 
-            player.openInventory(inventory);
-            player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
+                inventory.setItem(0, new ItemBuilder(Material.INK_SACK).setDurability((short) 10).setDisplayName("§2•§a● Alle").toItemStack());
+                inventory.setItem(1, new ItemBuilder(Material.INK_SACK).setDurability((short) 5).setDisplayName("§5•§d● VIP").toItemStack());
+                inventory.setItem(2, new ItemBuilder(Material.INK_SACK).setDurability((short) 1).setDisplayName("§4•§c● Keiner").toItemStack());
+
+                player.openInventory(inventory);
+                player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
+
+            }
 
         }
 

@@ -15,10 +15,6 @@
 
     <repositories>
         <repository>
-            <id>gradle-release-local</id>
-            <url>https://repo.thesimplecloud.eu/artifactory/list/gradle-release-local/</url>
-        </repository>
-        <repository>
             <id>minecraft-repo</id>
             <url>https://libraries.minecraft.net/</url>
         </repository>
@@ -26,14 +22,18 @@
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>gradle-release-local</id>
+            <url>https://repo.thesimplecloud.eu/artifactory/list/gradle-release-local/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>de.Puishi</groupId>
             <artifactId>SpigotAPI</artifactId>
-            <version>1.0-SNAPSHOT</version>
             <scope>system</scope>
+            <version>1.0-SNAPSHOT</version>
             <systemPath>${basedir}/lib/spigot.jar</systemPath>
         </dependency>
         <dependency>
@@ -81,6 +81,13 @@
             <version>1.0-SNAPSHOT</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/ClayAPI-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>de.Puishi</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/ProtocolLib.jar</systemPath>
         </dependency>
     </dependencies>
 

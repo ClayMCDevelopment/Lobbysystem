@@ -1,6 +1,10 @@
 package eu.claymc.lobbysystem.utils;
 
+import eu.claymc.api.builder.ItemBuilder;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 public class Data {
 
@@ -12,5 +16,17 @@ public class Data {
         connection.sendPacket(packetPlayOutChat);
     }
      */
+
+    public void setPanes(Inventory inventory, int size) {
+
+        final ItemStack stained_glass_paine = new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack();
+
+        for(int i = 0; i < size; i++) {
+
+            inventory.setItem(i, stained_glass_paine);
+
+        }
+
+    }
 
 }

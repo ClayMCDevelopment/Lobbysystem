@@ -1,5 +1,6 @@
 package eu.claymc.lobbysystem.listener;
 
+import eu.claymc.lobbysystem.Lobbysystem;
 import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.claymc.lobbysystem.manager.ItemManager;
 import org.bukkit.GameMode;
@@ -23,6 +24,7 @@ public class ConnectionListener implements Listener {
         player.setFoodLevel(20);
         player.setGameMode(GameMode.SURVIVAL);
         player.setLevel(2021);
+        Lobbysystem.getInstance().getScoreboardManager().setScoreboard(player);
 
     }
 
