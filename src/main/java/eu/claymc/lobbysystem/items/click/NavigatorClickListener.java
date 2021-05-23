@@ -16,13 +16,13 @@ public class NavigatorClickListener implements Listener {
     @EventHandler
     public void handle(final InventoryClickEvent event) {
 
-        if(event.getCurrentItem() == null) return;
-        if(event.getCurrentItem().getItemMeta() == null) return;
-        if(event.getCurrentItem().getItemMeta().getDisplayName() == null) return;
+        if (event.getCurrentItem() == null) return;
+        if (event.getCurrentItem().getItemMeta() == null) return;
+        if (event.getCurrentItem().getItemMeta().getDisplayName() == null) return;
 
         final Player player = (Player) event.getWhoClicked();
 
-        if(event.getInventory().getName().equals(ItemEnum.NAVIGATOR.getInventoryName())) {
+        if (event.getInventory().getName().equals(ItemEnum.NAVIGATOR.getInventoryName())) {
 
             switch (event.getSlot()) {
 
@@ -32,6 +32,9 @@ public class NavigatorClickListener implements Listener {
                 case 18:
                     teleport(player, LocationEnum.TTT);
                     break;
+                case 12:
+                    teleport(player, LocationEnum.SHOP);
+                    break;
 
             }
 
@@ -39,18 +42,6 @@ public class NavigatorClickListener implements Listener {
 
     }
 
-    /*
-    private void teleport(Player player, LocationEnum locationEnum) {
-        ClayAPI.getInstance().bukkit().getRunTasks().runDelayAsync(() -> {
-            clayer.getPlayer().playSound(clayer.getPlayer().getLocation(), Sound.LEVEL_UP, 10, 10);
-            Vector vector = new Vector();
-            vector.setY(0.2);
-            clayer.getPlayer().setVelocity(vector);
-            clayer.getPlayer().teleport(locationEnum.getLocation());
-            clayer.getPlayer().playSound(clayer.getPlayer().getLocation(), Sound.ENDERMAN_TELEPORT, 10, 10);
-        }, 2);
-    }
-     */
     private void teleport(Player player, LocationEnum locationEnum) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(Lobbysystem.getInstance(), new Runnable() {
             @Override

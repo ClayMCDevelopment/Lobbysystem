@@ -5,6 +5,7 @@ import eu.claymc.lobbysystem.Lobbysystem;
 import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.claymc.lobbysystem.manager.ItemManager;
 import eu.claymc.lobbysystem.utils.Base64;
+import eu.claymc.lobbysystem.utils.FlyingItems;
 import eu.claymc.lobbysystem.utils.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -12,6 +13,7 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -33,7 +35,9 @@ public class ConnectionListener implements Listener {
         player.setGameMode(GameMode.SURVIVAL);
         player.setLevel(2021);
 
-        Lobbysystem.getInstance().getData().hide.add(player);
+        Lobbysystem.getInstance().getData().hide.forEach(hider -> {
+            hider.hidePlayer(player);
+        });
 
         new BukkitRunnable() {
             @Override
@@ -42,18 +46,18 @@ public class ConnectionListener implements Listener {
             }
         }.runTaskTimer(Lobbysystem.getInstance(), 0, 20);
 
-        Lobbysystem.getInstance().getData().spawnArmorstands();
-
-        Lobbysystem.getInstance().getScoreboardManager().setScoreboard(player);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Lobbysystem.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                Lobbysystem.getInstance().getScoreboardManager().setScoreboard(player);
+            }
+        }, 10);
 
     }
 
     @EventHandler
     public void handleQuit(final PlayerQuitEvent event) {
         event.setQuitMessage(null);
-
-        Lobbysystem.getInstance().getData().getArmorStand().remove();
-
     }
 
 }

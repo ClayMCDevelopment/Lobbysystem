@@ -1,17 +1,15 @@
 package eu.claymc.lobbysystem.items;
 
-import eu.claymc.api.builder.ItemBuilder;
+import eu.claymc.api.ClayAPI;
+import eu.claymc.lobbysystem.Lobbysystem;
 import eu.claymc.lobbysystem.enums.ItemEnum;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 
 public class PlayerHiderItem implements Listener {
 
@@ -24,17 +22,24 @@ public class PlayerHiderItem implements Listener {
 
         final Player player = event.getPlayer();
 
-        if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.PLAYER_HIDER.getItemStack().getItemMeta().getDisplayName())) {
+        if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
-            if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.PLAYER_HIDER_NOT_HIDED.getItemStack().getItemMeta().getDisplayName())) {
 
-                final Inventory inventory = Bukkit.createInventory(null, InventoryType.BREWING, "§6•§e● Verstecker");
+                player.getInventory().setItem(1, ItemEnum.PLAYER_HIDER_HIDED.getItemStack());
+                Lobbysystem.getInstance().getData().hide.add(player);
+                Bukkit.getOnlinePlayers().forEach(player:: hidePlayer);
+                player.closeInventory();
+                player.sendMessage(ClayAPI.getInstance().getPREFIX() + "Du siehst nun keine Spieler!");
+                player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
 
-                inventory.setItem(0, new ItemBuilder(Material.INK_SACK).setDurability((short) 10).setDisplayName("§2•§a● Alle").toItemStack());
-                //inventory.setItem(1, new ItemBuilder(Material.INK_SACK).setDurability((short) 5).setDisplayName("§5•§d● VIP").toItemStack());
-                inventory.setItem(2, new ItemBuilder(Material.INK_SACK).setDurability((short) 1).setDisplayName("§4•§c● Keiner").toItemStack());
+            } else if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.PLAYER_HIDER_HIDED.getItemStack().getItemMeta().getDisplayName())){
 
-                player.openInventory(inventory);
+                player.getInventory().setItem(1, ItemEnum.PLAYER_HIDER_NOT_HIDED.getItemStack());
+                Lobbysystem.getInstance().getData().hide.remove(player);
+                Bukkit.getOnlinePlayers().forEach(player:: showPlayer);
+                player.closeInventory();
+                player.sendMessage(ClayAPI.getInstance().getPREFIX() + "Du siehst nun alle Spieler!");
                 player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
 
             }

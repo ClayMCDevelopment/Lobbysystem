@@ -5,13 +5,11 @@ import eu.claymc.lobbysystem.items.*;
 import eu.claymc.lobbysystem.items.click.AcpClickListener;
 import eu.claymc.lobbysystem.items.click.LobbiesClickListener;
 import eu.claymc.lobbysystem.items.click.NavigatorClickListener;
-import eu.claymc.lobbysystem.items.click.PlayerHiderClickListener;
 import eu.claymc.lobbysystem.listener.ConnectionListener;
 import eu.claymc.lobbysystem.listener.ProtectionListener;
 import eu.claymc.lobbysystem.manager.ParticleManager;
 import eu.claymc.lobbysystem.manager.ScoreboardManager;
 import eu.claymc.lobbysystem.utils.Data;
-import eu.claymc.lobbysystem.utils.NPC;
 import eu.claymc.lobbysystem.utils.SkullBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -39,6 +37,13 @@ public class Lobbysystem extends JavaPlugin {
         this.scoreboardManager.startScoreboardAnimation();
         this.scoreboardManager.update();
 
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Lobbysystem.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                Lobbysystem.getInstance().getData().spawnArmorstands();
+            }
+        }, 80);
+
     }
 
     @Override
@@ -59,7 +64,6 @@ public class Lobbysystem extends JavaPlugin {
         pluginManager.registerEvents(new ProfileItem(), this);
         pluginManager.registerEvents(new NavigatorClickListener(), this);
         pluginManager.registerEvents(new AcpClickListener(), this);
-        pluginManager.registerEvents(new PlayerHiderClickListener(), this);
         pluginManager.registerEvents(new SilentHubItem(), this);
         pluginManager.registerEvents(new LobbiesClickListener(), this);
 

@@ -33,63 +33,64 @@ public class ScoreboardManager {
     };
 
     public void setScoreboard(Player player) {
-        final Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        final Scoreboard scoreboard = player.getScoreboard();
         final Objective objective = scoreboard.registerNewObjective("aaa", "bbb");
         final IPermissionPlayer permissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
         final ICloudPlayer cloudPlayer = CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId());
 
-        String servername = cloudPlayer.getConnectedServerName();
+        String servername = cloudPlayer.getConnectedServer().getName();
 
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName("§6•§e● ClayMC §8▎ §7Lobby");
 
-        objective.getScore("§8§m----------------").setScore(14);
-        objective.getScore("§8•§7● §7Server").setScore(13);
-        objective.getScore("§8➜ §e" + servername).setScore(12);
-        objective.getScore("§1").setScore(11);
-        objective.getScore("§8•§7● §7Rang").setScore(10);
+        objective.getScore(" §8§m----------------").setScore(15);
+        objective.getScore(" §8•§7● §7Server").setScore(14);
+        objective.getScore(" §8➜ §e" + servername).setScore(13);
+        objective.getScore("§1").setScore(12);
+        objective.getScore(" §8•§7● §7Rang").setScore(11);
 
         if(permissionPlayer.hasPermissionGroup("Owner")) {
-            objective.getScore("§8➜ §4§lOwner").setScore(9);
+            objective.getScore(" §8➜ §4§lOwner").setScore(10);
         } else if(permissionPlayer.hasPermissionGroup("Admin")) {
-            objective.getScore("§8➜ §4Administrator").setScore(9);
+            objective.getScore(" §8➜ §4Administrator").setScore(10);
         } else if(permissionPlayer.hasPermissionGroup("SrDeveloper")) {
-            objective.getScore("§8➜ §bSrDeveloper").setScore(9);
+            objective.getScore(" §8➜ §bSrDeveloper").setScore(10);
         } else if(permissionPlayer.hasPermissionGroup("Developer")) {
-            objective.getScore("§8➜ §bDeveloper").setScore(9);
+            objective.getScore(" §8➜ §bDeveloper").setScore(10);
         } else if(permissionPlayer.hasPermissionGroup("SrModerator")) {
-            objective.getScore("§8➜ §cSrModerator").setScore(9);
+            objective.getScore(" §8➜ §cSrModerator").setScore(10);
         } else if(permissionPlayer.hasPermissionGroup("Moderator")) {
-            objective.getScore("§8➜ §cModerator").setScore(9);
+            objective.getScore(" §8➜ §cModerator").setScore(10);
         } else if(permissionPlayer.hasPermissionGroup("Supporter")) {
-            objective.getScore("§8➜ §3Supporter").setScore(9);
+            objective.getScore(" §8➜ §3Supporter").setScore(10);
         } else if(permissionPlayer.hasPermissionGroup("Clayer")) {
-            objective.getScore("§8➜ §eClayer").setScore(9);
+            objective.getScore(" §8➜ §eClayer").setScore(10);
         }
 
-        objective.getScore("§2").setScore(8);
-        objective.getScore("§8•§7● §7Clays").setScore(7);
+        objective.getScore("§2").setScore(9);
+        objective.getScore(" §8•§7● §7Clays").setScore(8);
         //objective.getScore("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player)).setScore(6);
 
-        Team team1 = scoreboard.registerNewTeam("x6");
+        Team team1 = scoreboard.registerNewTeam("x7");
         team1.setPrefix("§7");
-        team1.setSuffix("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player));
+        team1.setSuffix(" §8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player));
         team1.addEntry("§6");
-        objective.getScore("§6").setScore(6);
+        objective.getScore("§6").setScore(7);
 
-        objective.getScore("§9").setScore(5);
-        objective.getScore("§8•§7● §7Online").setScore(4);
+        objective.getScore("§9").setScore(6);
+        objective.getScore(" §8•§7● §7Online").setScore(5);
         //objective.getScore("§8➜ §e" + CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName("Lobby-1").getOnlineCount()).setScore(3);
 
-        Team team = scoreboard.registerNewTeam("x3");
+        Team team = scoreboard.registerNewTeam("x4");
         team.setPrefix("§8");
-        team.setSuffix("§8➜ §e" + player.getServer().getOnlinePlayers().size());
+        team.setSuffix(" §8➜ §e" + player.getServer().getOnlinePlayers().size());
         team.addEntry("§3");
-        objective.getScore("§3").setScore(3);
+        objective.getScore("§3").setScore(4);
 
-        objective.getScore("§4").setScore(2);
-        objective.getScore("§8•§7● §7Discord").setScore(1);
-        objective.getScore("§8➜ §ddc.ClayMC.eu").setScore(0);
+        objective.getScore(" §4").setScore(3);
+        objective.getScore(" §8•§7● §7Discord").setScore(2);
+        objective.getScore(" §8➜ §ddc.ClayMC.eu").setScore(1);
+        objective.getScore(" §8").setScore(0);
 
         player.setScoreboard(scoreboard);
         board.put(scoreboard, player);
@@ -121,8 +122,8 @@ public class ScoreboardManager {
                 public void run() {
                     for (Scoreboard scoreboard : board.keySet()) {
                         Player player = board.get(scoreboard);
-                        scoreboard.getTeam("x3").setSuffix("§8➜ §e" + player.getServer().getOnlinePlayers().size());
-                        scoreboard.getTeam("x6").setSuffix("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player));
+                        scoreboard.getTeam("x4").setSuffix(" §8➜ §e" + player.getServer().getOnlinePlayers().size());
+                        scoreboard.getTeam("x7").setSuffix(" §8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player));
                     }
                 }
             }.runTaskTimer(Lobbysystem.getInstance(), 0, 20);

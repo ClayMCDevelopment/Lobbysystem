@@ -39,7 +39,7 @@ public class Data {
 
         final ItemStack stained_glass_paine = new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack();
 
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
 
             inventory.setItem(i, stained_glass_paine);
 
@@ -48,7 +48,7 @@ public class Data {
     }
 
     public void sendActionbar(Player p, String msg) {
-        PlayerConnection connection = ((CraftPlayer)p).getHandle().playerConnection;
+        PlayerConnection connection = ((CraftPlayer) p).getHandle().playerConnection;
         IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + msg + "\"}");
         PacketPlayOutChat packetPlayOutChat = new PacketPlayOutChat(chat, (byte) 2);
         connection.sendPacket(packetPlayOutChat);
@@ -56,7 +56,7 @@ public class Data {
 
     public void spawnArmorstands() {
 
-        armorStand = (ArmorStand) Bukkit.getWorld("world").spawnEntity(LocationEnum.NPC.getLocation(), EntityType.ARMOR_STAND);
+        armorStand = LocationEnum.NPC_SHOP.getLocation().getWorld().spawn(LocationEnum.NPC_SHOP.getLocation(), ArmorStand.class);
         armorStand.setBasePlate(false);
         armorStand.setHelmet(new ItemBuilder(Base64.getSkull("http://textures.minecraft.net/texture/c172d0a0d6969216b7f0b2f99adb409945c5de9b0831ff5ef064ba5f3835e696")).toItemStack());
         armorStand.setVisible(false);
@@ -79,7 +79,4 @@ public class Data {
 
     }
 
-    public ArmorStand getArmorStand() {
-        return armorStand;
-    }
 }

@@ -3,6 +3,7 @@ package eu.claymc.lobbysystem.items;
 import eu.claymc.api.builder.ItemBuilder;
 import eu.claymc.lobbysystem.enums.ItemEnum;
 import eu.thesimplecloud.api.CloudAPI;
+import eu.thesimplecloud.api.player.ICloudPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -24,17 +25,17 @@ public class LobbiesItem implements Listener {
         if (event.getItem().getItemMeta().getDisplayName() == null) return;
 
         final Player player = event.getPlayer();
+        final ICloudPlayer cloudPlayer = CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId());
 
         if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.LOBBY_SWITCHER.getItemStack().getItemMeta().getDisplayName())) {
 
             if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
-                final Inventory inventory = Bukkit.createInventory(null, InventoryType.HOPPER, "§6•§e● Lobbies");
+                final Inventory inventory = Bukkit.createInventory(null, InventoryType.HOPPER, ItemEnum.LOBBY_SWITCHER.getInventoryName());
 
                 CloudAPI.getInstance().getCloudServiceManager().getCloudServicesInLobbyStateByGroupName("Lobby").forEach(iCloudService -> {
                     inventory.addItem(new ItemBuilder(Material.POTION).setDisplayName("§6•§e● " + iCloudService.getName()).toItemStack());
                 });
-
                 player.openInventory(inventory);
                 player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
 

@@ -11,7 +11,7 @@ public class ItemManager {
         player.getInventory().setArmorContents(null);
 
         player.getInventory().setItem(0, ItemEnum.NAVIGATOR.getItemStack());
-        player.getInventory().setItem(1, ItemEnum.PLAYER_HIDER.getItemStack());
+        player.getInventory().setItem(1, ItemEnum.PLAYER_HIDER_NOT_HIDED.getItemStack());
         player.getInventory().setItem(4, ItemEnum.GRAPPLING_HOOK.getItemStack());
         player.getInventory().setItem(7, ItemEnum.LOBBY_SWITCHER.getItemStack());
         player.getInventory().setItem(8, ItemEnum.PROFILE_HEAD.getItemStack());

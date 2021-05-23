@@ -4,7 +4,6 @@ import eu.claymc.api.ClayAPI;
 import eu.claymc.api.builder.ItemBuilder;
 import eu.claymc.lobbysystem.Lobbysystem;
 import eu.claymc.lobbysystem.enums.ItemEnum;
-import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.thesimplecloud.api.CloudAPI;
 import eu.thesimplecloud.api.servicegroup.grouptype.ICloudProxyGroup;
 import org.bukkit.Bukkit;
