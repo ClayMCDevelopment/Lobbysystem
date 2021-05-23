@@ -2,6 +2,8 @@ package eu.claymc.lobbysystem.listener;
 
 import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.claymc.lobbysystem.manager.ItemManager;
+import eu.thesimplecloud.module.permission.PermissionPool;
+import eu.thesimplecloud.module.permission.player.IPermissionPlayer;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -214,14 +216,15 @@ public class ProtectionListener implements Listener {
     @EventHandler
     public void handleSneek(final PlayerToggleSneakEvent event) {
         final Player player = event.getPlayer();
+        final IPermissionPlayer permissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
 
-        if(player.isSneaking()) {
+        if(!permissionPlayer.hasPermissionGroup("Clayer")) {
 
-            ItemManager.setItems(player);
-
-        } else {
-
-            ItemManager.setSneekItems(player);
+            if (player.isSneaking()) {
+                ItemManager.setItems(player);
+            } else {
+                ItemManager.setSneekItems(player);
+            }
 
         }
 

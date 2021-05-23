@@ -3,6 +3,7 @@ package eu.claymc.lobbysystem;
 import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.claymc.lobbysystem.items.*;
 import eu.claymc.lobbysystem.items.click.AcpClickListener;
+import eu.claymc.lobbysystem.items.click.LobbiesClickListener;
 import eu.claymc.lobbysystem.items.click.NavigatorClickListener;
 import eu.claymc.lobbysystem.items.click.PlayerHiderClickListener;
 import eu.claymc.lobbysystem.listener.ConnectionListener;
@@ -59,6 +60,8 @@ public class Lobbysystem extends JavaPlugin {
         pluginManager.registerEvents(new NavigatorClickListener(), this);
         pluginManager.registerEvents(new AcpClickListener(), this);
         pluginManager.registerEvents(new PlayerHiderClickListener(), this);
+        pluginManager.registerEvents(new SilentHubItem(), this);
+        pluginManager.registerEvents(new LobbiesClickListener(), this);
 
     }
     public void schedule() {

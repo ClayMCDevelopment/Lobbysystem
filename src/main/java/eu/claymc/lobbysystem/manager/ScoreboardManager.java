@@ -6,8 +6,10 @@ import eu.claymc.lobbysystem.Lobbysystem;
 import eu.thesimplecloud.api.CloudAPI;
 import eu.thesimplecloud.api.player.CloudPlayer;
 import eu.thesimplecloud.api.player.ICloudPlayer;
+import eu.thesimplecloud.clientserverapi.lib.promise.ICommunicationPromise;
 import eu.thesimplecloud.module.permission.PermissionPool;
 import eu.thesimplecloud.module.permission.player.IPermissionPlayer;
+import kotlin.Unit;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -36,12 +38,14 @@ public class ScoreboardManager {
         final IPermissionPlayer permissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
         final ICloudPlayer cloudPlayer = CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId());
 
+        String servername = cloudPlayer.getConnectedServerName();
+
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName("§6•§e● ClayMC §8▎ §7Lobby");
 
         objective.getScore("§8§m----------------").setScore(14);
         objective.getScore("§8•§7● §7Server").setScore(13);
-        objective.getScore("§8➜ §e" + cloudPlayer.getConnectedServerName()).setScore(12);
+        objective.getScore("§8➜ §e" + servername).setScore(12);
         objective.getScore("§1").setScore(11);
         objective.getScore("§8•§7● §7Rang").setScore(10);
 

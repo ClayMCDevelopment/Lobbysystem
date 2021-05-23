@@ -30,8 +30,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>de.Puishi</groupId>
-            <artifactId>SpigotAPI</artifactId>
+            <groupId>org.spigot</groupId>
+            <artifactId>spigot</artifactId>
             <scope>system</scope>
             <version>1.0-SNAPSHOT</version>
             <systemPath>${basedir}/lib/spigot.jar</systemPath>

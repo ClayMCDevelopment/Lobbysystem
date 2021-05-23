@@ -2,6 +2,7 @@ package eu.claymc.lobbysystem.items;
 
 import eu.claymc.api.builder.ItemBuilder;
 import eu.claymc.lobbysystem.enums.ItemEnum;
+import eu.thesimplecloud.api.CloudAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -30,17 +31,12 @@ public class LobbiesItem implements Listener {
 
                 final Inventory inventory = Bukkit.createInventory(null, InventoryType.HOPPER, "§6•§e● Lobbies");
 
-                inventory.setItem(0, new ItemBuilder(Material.EXP_BOTTLE).setDisplayName("§6•§e● Premiumlobby-1").toItemStack());
-                inventory.setItem(1, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-1").toItemStack());
-                inventory.setItem(2, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-2").toItemStack());
-                inventory.setItem(3, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-3").toItemStack());
-                inventory.setItem(4, new ItemBuilder(Material.POTION).setDisplayName("§6•§e● Lobby-4").toItemStack());
+                CloudAPI.getInstance().getCloudServiceManager().getCloudServicesInLobbyStateByGroupName("Lobby").forEach(iCloudService -> {
+                    inventory.addItem(new ItemBuilder(Material.POTION).setDisplayName("§6•§e● " + iCloudService.getName()).toItemStack());
+                });
 
                 player.openInventory(inventory);
                 player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
-
-                //Collection <ICloudService> iCloudService = CloudAPI.getInstance().getCloudServiceManager().getCloudServicesByGroupName("Lobby");
-
 
             }
 

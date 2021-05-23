@@ -32,7 +32,7 @@ public class AcpItem implements Listener {
 
         if (event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.ADMIN_GUI.getItemStack().getItemMeta().getDisplayName())) {
 
-            if (player.getPlayer().isSneaking()) {
+            if (player.isSneaking()) {
 
                 if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 
