@@ -1,10 +1,14 @@
 package eu.claymc.lobbysystem;
 
+import eu.claymc.api.ClayAPI;
 import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.claymc.lobbysystem.items.*;
 import eu.claymc.lobbysystem.items.click.AcpClickListener;
 import eu.claymc.lobbysystem.items.click.LobbiesClickListener;
 import eu.claymc.lobbysystem.items.click.NavigatorClickListener;
+import eu.claymc.lobbysystem.items.shop.ShopClickListener;
+import eu.claymc.lobbysystem.items.shop.ShopInteractListener;
+import eu.claymc.lobbysystem.items.shop.sql.ShopSQL;
 import eu.claymc.lobbysystem.listener.ConnectionListener;
 import eu.claymc.lobbysystem.listener.ProtectionListener;
 import eu.claymc.lobbysystem.manager.ParticleManager;
@@ -24,18 +28,21 @@ public class Lobbysystem extends JavaPlugin {
     private Data data;
     private SkullBuilder skullBuilder;
     private ScoreboardManager scoreboardManager;
+    private ShopSQL shopSQL;
 
     @Override
     public void onEnable() {
         instance = this;
         init();
         schedule();
+        createMySQLTable();
 
         this.particleManager = new ParticleManager();
         this.data = new Data();
         this.scoreboardManager = new ScoreboardManager();
         this.scoreboardManager.startScoreboardAnimation();
         this.scoreboardManager.update();
+        this.shopSQL = new ShopSQL();
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(Lobbysystem.getInstance(), new Runnable() {
             @Override
@@ -66,6 +73,8 @@ public class Lobbysystem extends JavaPlugin {
         pluginManager.registerEvents(new AcpClickListener(), this);
         pluginManager.registerEvents(new SilentHubItem(), this);
         pluginManager.registerEvents(new LobbiesClickListener(), this);
+        pluginManager.registerEvents(new ShopInteractListener(), this);
+        pluginManager.registerEvents(new ShopClickListener(), this);
 
     }
     public void schedule() {
@@ -77,6 +86,10 @@ public class Lobbysystem extends JavaPlugin {
             }
         }.runTaskTimer(Lobbysystem.getInstance(), 0, 35);
 
+    }
+
+    public void createMySQLTable() {
+        ClayAPI.getInstance().getSqlAdapter().update("CREATE TABLE IF NOT EXISTS claypass (UUID VARCHAR(64), BUYED INT);");
     }
 
     public static Lobbysystem getInstance() {
@@ -93,5 +106,9 @@ public class Lobbysystem extends JavaPlugin {
 
     public ScoreboardManager getScoreboardManager() {
         return scoreboardManager;
+    }
+
+    public ShopSQL getShopSQL() {
+        return shopSQL;
     }
 }

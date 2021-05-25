@@ -35,7 +35,16 @@ public class NavigatorClickListener implements Listener {
                 case 12:
                     teleport(player, LocationEnum.SHOP);
                     break;
-
+                case 14:
+                    break;
+                case 26:
+                    teleport(player, LocationEnum.KITPVP);
+                case 28:
+                    teleport(player, LocationEnum.CLAYJUMP);
+                    break;
+                case 34:
+                    teleport(player, LocationEnum.UHC);
+                    break;
             }
 
         }

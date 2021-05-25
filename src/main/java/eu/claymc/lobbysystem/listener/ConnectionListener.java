@@ -42,7 +42,12 @@ public class ConnectionListener implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                Lobbysystem.getInstance().getData().sendActionbar(player, "§8•§7● Freunde §8➜ §e0 §8▎ §7Clan §8➜ §cKein Clan §7●§8•");
+
+                if(Lobbysystem.getInstance().getShopSQL().getClayShop(player.getUniqueId().toString()) == 0) {
+                    Lobbysystem.getInstance().getData().sendActionbar(player, "§8•§7● ClayPass §8➜ §c✗ §8▎ §7Clan §8➜ §cKein Clan §7●§8•");
+                } else if(Lobbysystem.getInstance().getShopSQL().getClayShop(player.getUniqueId().toString()) == 1) {
+                    Lobbysystem.getInstance().getData().sendActionbar(player, "§8•§7● ClayPass §8➜ §a✔ §8▎ §7Clan §8➜ §cKein Clan §7●§8•");
+                }
             }
         }.runTaskTimer(Lobbysystem.getInstance(), 0, 20);
 
@@ -52,6 +57,8 @@ public class ConnectionListener implements Listener {
                 Lobbysystem.getInstance().getScoreboardManager().setScoreboard(player);
             }
         }, 10);
+
+        Lobbysystem.getInstance().getShopSQL().createPlayer(player);
 
     }
 
