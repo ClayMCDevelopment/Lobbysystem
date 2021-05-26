@@ -39,15 +39,12 @@ public class ProfileItem implements Listener {
                 inventory.setItem(4, new SkullBuilder("§6•§e● " + player.getName(), player.getName(), 1).buildSkull());
                 inventory.setItem(19, new ItemBuilder(Material.GOLDEN_CARROT).setLore("§8§m------------------------",
                         "§8•§7● Verwalte deine Freunde", "§8§m------------------------").setDisplayName("§6•§e● Freunde").toItemStack());
-                /*
-                inventory.setItem(22, new ItemBuilder(Material.ARMOR_STAND).setLore("§8§m------------------------",
-                        "§8•§7● ", "§8§m------------------------").setDisplayName("§6•§e● Stats").toItemStack());
-                 */
                 inventory.setItem(25, new ItemBuilder(Material.GOLD_HELMET).setLore("§8§m------------------------",
                         "§8•§7● Verwalte deinen Clan", "§8§m------------------------").setDisplayName("§6•§e● Clan").toItemStack());
                 inventory.setItem(29, new ItemBuilder(Material.NETHER_STAR).setLore("§8§m------------------------",
                         "§8•§7● Verwalte deine Party", "§8§m------------------------").setDisplayName("§6•§e● Party").toItemStack());
-                inventory.setItem(33, new ItemBuilder(Material.BARRIER).setDisplayName("§4•§c● Kommt bald...").toItemStack());
+                inventory.setItem(33, new ItemBuilder(Material.PRISMARINE_SHARD).setDisplayName("§6•§e● Herausforderungen").setLore("§8§m------------------------",
+                        "§8•§7● Betrachte deinen Fortschritt", "§8§m------------------------").toItemStack());
 
                 player.openInventory(inventory);
                 player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);

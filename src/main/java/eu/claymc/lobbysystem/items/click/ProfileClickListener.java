@@ -75,6 +75,37 @@ public class ProfileClickListener implements Listener {
                     player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
                     break;
 
+                case 29:
+                    final Inventory inventory2 = Bukkit.createInventory(null, 9, "§6•§e● Party");
+
+                    inventory2.setItem(4, new ItemBuilder(Base64.getSkull("http://textures.minecraft.net/texture/3edd20be93520949e6ce789dc4f43efaeb28c717ee6bfcbbe02780142f716")).setDisplayName("§6•§e● Party erstellen").toItemStack());
+
+                    player.openInventory(inventory2);
+                    player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
+                    break;
+
+                case 33:
+                    final Inventory inventory3 = Bukkit.createInventory(null, 9 * 6, "§6•§e● Herausforderungen");
+
+                    inventory3.setItem(53, new ItemBuilder(Base64.getSkull("http://textures.minecraft.net/texture/9c9ec71c1068ec6e03d2c9287f9da9193639f3a635e2fbd5d87c2fabe6499")).setDisplayName("§6•§e● Nächste Seite").toItemStack());
+                    inventory3.setItem(52, new ItemBuilder(Base64.getSkull("http://textures.minecraft.net/texture/816ea34a6a6ec5c051e6932f1c471b7012b298d38d179f1b487c413f51959cd4")).setDisplayName("§6•§e● Vorherige Seite").toItemStack());
+                    inventory3.setItem(45, new ItemBuilder(Base64.getSkull("http://textures.minecraft.net/texture/816ea34a6a6ec5c051e6932f1c471b7012b298d38d179f1b487c413f51959cd4")).setDisplayName("§6•§e● Zurück").toItemStack());
+                    inventory3.setItem(49, new ItemBuilder(Material.BARRIER).setDisplayName("§6•§e● Herausforderungen zurücksetzen").toItemStack());
+
+                    inventory3.setItem(44, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+                    inventory3.setItem(43, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+                    inventory3.setItem(42, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+                    inventory3.setItem(41, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+                    inventory3.setItem(40, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+                    inventory3.setItem(39, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+                    inventory3.setItem(38, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+                    inventory3.setItem(37, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+                    inventory3.setItem(36, new ItemBuilder(Material.STAINED_GLASS_PANE).setDisplayName(" ").setDurability((short) 7).toItemStack());
+
+                    player.openInventory(inventory3);
+                    player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
+                    break;
+
             }
 
         }
