@@ -34,7 +34,7 @@ public class ScoreboardManager {
 
     public void setScoreboard(Player player) {
         final Scoreboard scoreboard = player.getScoreboard();
-        final Objective objective = scoreboard.registerNewObjective("aaa", "bbb");
+        final Objective objective = scoreboard.registerNewObjective("ccc", "ddd");
         final IPermissionPlayer permissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
         final ICloudPlayer cloudPlayer = CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId());
 

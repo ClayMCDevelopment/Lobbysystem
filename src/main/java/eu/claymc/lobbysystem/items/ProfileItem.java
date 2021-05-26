@@ -39,8 +39,10 @@ public class ProfileItem implements Listener {
                 inventory.setItem(4, new SkullBuilder("§6•§e● " + player.getName(), player.getName(), 1).buildSkull());
                 inventory.setItem(19, new ItemBuilder(Material.GOLDEN_CARROT).setLore("§8§m------------------------",
                         "§8•§7● Verwalte deine Freunde", "§8§m------------------------").setDisplayName("§6•§e● Freunde").toItemStack());
+                /*
                 inventory.setItem(22, new ItemBuilder(Material.ARMOR_STAND).setLore("§8§m------------------------",
                         "§8•§7● ", "§8§m------------------------").setDisplayName("§6•§e● Stats").toItemStack());
+                 */
                 inventory.setItem(25, new ItemBuilder(Material.GOLD_HELMET).setLore("§8§m------------------------",
                         "§8•§7● Verwalte deinen Clan", "§8§m------------------------").setDisplayName("§6•§e● Clan").toItemStack());
                 inventory.setItem(29, new ItemBuilder(Material.NETHER_STAR).setLore("§8§m------------------------",

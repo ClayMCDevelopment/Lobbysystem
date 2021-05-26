@@ -42,7 +42,6 @@ public class ConnectionListener implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-
                 if(Lobbysystem.getInstance().getShopSQL().getClayShop(player.getUniqueId().toString()) == 0) {
                     Lobbysystem.getInstance().getData().sendActionbar(player, "§8•§7● ClayPass §8➜ §c✗ §8▎ §7Clan §8➜ §cKein Clan §7●§8•");
                 } else if(Lobbysystem.getInstance().getShopSQL().getClayShop(player.getUniqueId().toString()) == 1) {

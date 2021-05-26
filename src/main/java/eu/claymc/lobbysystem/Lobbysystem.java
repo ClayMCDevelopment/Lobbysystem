@@ -6,6 +6,7 @@ import eu.claymc.lobbysystem.items.*;
 import eu.claymc.lobbysystem.items.click.AcpClickListener;
 import eu.claymc.lobbysystem.items.click.LobbiesClickListener;
 import eu.claymc.lobbysystem.items.click.NavigatorClickListener;
+import eu.claymc.lobbysystem.items.click.ProfileClickListener;
 import eu.claymc.lobbysystem.items.shop.ShopClickListener;
 import eu.claymc.lobbysystem.items.shop.ShopInteractListener;
 import eu.claymc.lobbysystem.items.shop.sql.ShopSQL;
@@ -75,6 +76,7 @@ public class Lobbysystem extends JavaPlugin {
         pluginManager.registerEvents(new LobbiesClickListener(), this);
         pluginManager.registerEvents(new ShopInteractListener(), this);
         pluginManager.registerEvents(new ShopClickListener(), this);
+        pluginManager.registerEvents(new ProfileClickListener(), this);
 
     }
     public void schedule() {
