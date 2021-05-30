@@ -7,6 +7,8 @@ import eu.claymc.lobbysystem.items.click.AcpClickListener;
 import eu.claymc.lobbysystem.items.click.LobbiesClickListener;
 import eu.claymc.lobbysystem.items.click.NavigatorClickListener;
 import eu.claymc.lobbysystem.items.click.ProfileClickListener;
+import eu.claymc.lobbysystem.items.report.ReportItem;
+import eu.claymc.lobbysystem.items.report.sql.ReportSQL;
 import eu.claymc.lobbysystem.items.shop.ShopClickListener;
 import eu.claymc.lobbysystem.items.shop.ShopInteractListener;
 import eu.claymc.lobbysystem.items.shop.sql.ShopSQL;
@@ -30,6 +32,7 @@ public class Lobbysystem extends JavaPlugin {
     private SkullBuilder skullBuilder;
     private ScoreboardManager scoreboardManager;
     private ShopSQL shopSQL;
+    private ReportSQL reportSQL;
 
     @Override
     public void onEnable() {
@@ -44,6 +47,7 @@ public class Lobbysystem extends JavaPlugin {
         this.scoreboardManager.startScoreboardAnimation();
         this.scoreboardManager.update();
         this.shopSQL = new ShopSQL();
+        this.reportSQL = new ReportSQL();
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(Lobbysystem.getInstance(), new Runnable() {
             @Override
@@ -77,6 +81,7 @@ public class Lobbysystem extends JavaPlugin {
         pluginManager.registerEvents(new ShopInteractListener(), this);
         pluginManager.registerEvents(new ShopClickListener(), this);
         pluginManager.registerEvents(new ProfileClickListener(), this);
+        pluginManager.registerEvents(new ReportItem(), this);
 
     }
     public void schedule() {
@@ -112,5 +117,9 @@ public class Lobbysystem extends JavaPlugin {
 
     public ShopSQL getShopSQL() {
         return shopSQL;
+    }
+
+    public ReportSQL getReportSQL() {
+        return reportSQL;
     }
 }

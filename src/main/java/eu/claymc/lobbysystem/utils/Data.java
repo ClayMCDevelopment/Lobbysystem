@@ -22,18 +22,8 @@ import java.util.ArrayList;
 public class Data {
 
     static double i = 0;
-    private ArmorStand armorStand;
 
     public ArrayList<Player> hide = new ArrayList<>();
-
-    /*
-    public static void sendActionbar(Player player, String message) {
-        PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
-        IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
-        PacketPlayOutChat packetPlayOutChat = new PacketPlayOutChat(chat, (byte) 2);
-        connection.sendPacket(packetPlayOutChat);
-    }
-     */
 
     public void setPanes(Inventory inventory, int size) {
 
@@ -56,7 +46,7 @@ public class Data {
 
     public void spawnArmorstands() {
 
-        armorStand = LocationEnum.NPC_SHOP.getLocation().getWorld().spawn(LocationEnum.NPC_SHOP.getLocation(), ArmorStand.class);
+        ArmorStand armorStand = LocationEnum.NPC_SHOP.getLocation().getWorld().spawn(LocationEnum.NPC_SHOP.getLocation(), ArmorStand.class);
         armorStand.setBasePlate(false);
         armorStand.setHelmet(new ItemBuilder(Base64.getSkull("http://textures.minecraft.net/texture/c172d0a0d6969216b7f0b2f99adb409945c5de9b0831ff5ef064ba5f3835e696")).toItemStack());
         armorStand.setVisible(false);
@@ -64,6 +54,7 @@ public class Data {
         armorStand.setCustomName("§6•§e● Shop");
         armorStand.setCustomNameVisible(true);
 
+        /*
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -76,6 +67,14 @@ public class Data {
 
             }
         }.runTaskTimer(Lobbysystem.getInstance(), 0, 1L);
+         */
+
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(Lobbysystem.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                armorStand.getLocation().setPitch(armorStand.getLocation().getPitch() + 0.25f);
+            }
+        }, 1, 1);
 
     }
 

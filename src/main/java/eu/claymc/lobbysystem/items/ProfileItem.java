@@ -36,7 +36,7 @@ public class ProfileItem implements Listener {
                     inventory.setItem(i, stained_glass_paine);
                 }
 
-                inventory.setItem(4, new SkullBuilder("§6•§e● " + player.getName(), player.getName(), 1).buildSkull());
+                inventory.setItem(4, new SkullBuilder("§6•§e● " + player.getName(), player.getName(), 1, "", "", "").buildSkull());
                 inventory.setItem(19, new ItemBuilder(Material.GOLDEN_CARROT).setLore("§8§m------------------------",
                         "§8•§7● Verwalte deine Freunde", "§8§m------------------------").setDisplayName("§6•§e● Freunde").toItemStack());
                 inventory.setItem(25, new ItemBuilder(Material.GOLD_HELMET).setLore("§8§m------------------------",
