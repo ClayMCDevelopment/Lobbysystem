@@ -103,7 +103,12 @@ public class ReportItem implements Listener {
 
             if(event.getCurrentItem().getType() == Material.SKULL_ITEM) {
 
-                buildPlayerManager(player, event.getCurrentItem().getItemMeta().getDisplayName().replace("§6•§e● ", ""));
+                if(!(event.getCurrentItem().getItemMeta().getDisplayName().equals("§6•§e● Vorherige Seite")
+                    || event.getCurrentItem().getItemMeta().getDisplayName().equals("§6•§e● Nächste Seite"))) {
+
+                    buildPlayerManager(player, event.getCurrentItem().getItemMeta().getDisplayName().replace("§6•§e● ", ""));
+
+                }
 
             } else if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§6•§e● Vorherige Seite")) {
 
@@ -121,7 +126,11 @@ public class ReportItem implements Listener {
 
         } else if(event.getInventory().getName().equals("§6•§e● " + this.selectedUser.get(player))) {
 
+            if(event.getCurrentItem().getItemMeta().getDisplayName().equals("§6•§e● Nachspringen")) {
 
+
+
+            }
 
         }
 

@@ -7,6 +7,7 @@ import eu.claymc.lobbysystem.manager.ItemManager;
 import eu.claymc.lobbysystem.utils.Base64;
 import eu.claymc.lobbysystem.utils.FlyingItems;
 import eu.claymc.lobbysystem.utils.NPC;
+import javafx.scene.layout.Priority;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.ArmorStand;
@@ -22,7 +23,7 @@ import org.bukkit.util.EulerAngle;
 
 public class ConnectionListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void handleJoin(final PlayerJoinEvent event) {
         final Player player = event.getPlayer();
 
@@ -50,12 +51,14 @@ public class ConnectionListener implements Listener {
             }
         }.runTaskTimer(Lobbysystem.getInstance(), 0, 20);
 
-        Bukkit.getScheduler().scheduleSyncDelayedTask(Lobbysystem.getInstance(), new Runnable() {
+
+        new BukkitRunnable() {
             @Override
             public void run() {
                 Lobbysystem.getInstance().getScoreboardManager().setScoreboard(player);
             }
-        }, 10);
+        }.runTaskLater(Lobbysystem.getInstance(), 10);
+
 
         Lobbysystem.getInstance().getShopSQL().createPlayer(player);
 

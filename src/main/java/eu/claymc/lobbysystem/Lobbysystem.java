@@ -43,9 +43,11 @@ public class Lobbysystem extends JavaPlugin {
 
         this.particleManager = new ParticleManager();
         this.data = new Data();
+
         this.scoreboardManager = new ScoreboardManager();
         this.scoreboardManager.startScoreboardAnimation();
         this.scoreboardManager.update();
+
         this.shopSQL = new ShopSQL();
         this.reportSQL = new ReportSQL();
 

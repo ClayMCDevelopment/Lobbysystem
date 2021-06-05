@@ -8,6 +8,7 @@ import eu.thesimplecloud.api.player.CloudPlayer;
 import eu.thesimplecloud.api.player.ICloudPlayer;
 import eu.thesimplecloud.clientserverapi.lib.promise.ICommunicationPromise;
 import eu.thesimplecloud.module.permission.PermissionPool;
+import eu.thesimplecloud.module.permission.group.IPermissionGroup;
 import eu.thesimplecloud.module.permission.player.IPermissionPlayer;
 import kotlin.Unit;
 import org.bukkit.Bukkit;
@@ -18,7 +19,10 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 public class ScoreboardManager {
 
@@ -32,11 +36,11 @@ public class ScoreboardManager {
             "§6•§e● ClayMC §8▎ §7Lobb", "§6•§e● ClayMC §8▎ §7Lobby", "§6•§e● ClayMC §8▎ §7Lobby"
     };
 
-    public void setScoreboard(Player player) {
+    public void setScoreboard(final Player player) {
         final Scoreboard scoreboard = player.getScoreboard();
-        final Objective objective = scoreboard.registerNewObjective("hse", "otb");
-        final IPermissionPlayer permissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
-        final ICloudPlayer cloudPlayer = CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId());
+        final Objective objective = scoreboard.registerNewObjective("osne", "trew");
+        IPermissionPlayer permissionPlayer = PermissionPool.getInstance().getPermissionPlayerManager().getCachedPermissionPlayer(player.getUniqueId());
+        ICloudPlayer cloudPlayer = CloudAPI.getInstance().getCloudPlayerManager().getCachedCloudPlayer(player.getUniqueId());
 
         String servername = cloudPlayer.getConnectedServer().getName();
 
@@ -69,7 +73,6 @@ public class ScoreboardManager {
 
         objective.getScore("§2").setScore(9);
         objective.getScore(" §8•§7● §7Clays").setScore(8);
-        //objective.getScore("§8➜ §e" + ClayAPI.getInstance().getClaysSQL().getClays(player)).setScore(6);
 
         Team team1 = scoreboard.registerNewTeam("x7");
         team1.setPrefix("§7");
@@ -79,7 +82,6 @@ public class ScoreboardManager {
 
         objective.getScore("§9").setScore(6);
         objective.getScore(" §8•§7● §7Online").setScore(5);
-        //objective.getScore("§8➜ §e" + CloudAPI.getInstance().getCloudServiceManager().getCloudServiceByName("Lobby-1").getOnlineCount()).setScore(3);
 
         Team team = scoreboard.registerNewTeam("x4");
         team.setPrefix("§8");
