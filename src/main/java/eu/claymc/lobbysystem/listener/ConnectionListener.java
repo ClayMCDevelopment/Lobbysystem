@@ -1,17 +1,9 @@
 package eu.claymc.lobbysystem.listener;
 
-import eu.claymc.api.builder.ItemBuilder;
 import eu.claymc.lobbysystem.Lobbysystem;
 import eu.claymc.lobbysystem.enums.LocationEnum;
 import eu.claymc.lobbysystem.manager.ItemManager;
-import eu.claymc.lobbysystem.utils.Base64;
-import eu.claymc.lobbysystem.utils.FlyingItems;
-import eu.claymc.lobbysystem.utils.NPC;
-import javafx.scene.layout.Priority;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,7 +11,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.EulerAngle;
+
+import java.util.concurrent.ExecutionException;
 
 public class ConnectionListener implements Listener {
 
@@ -43,9 +36,9 @@ public class ConnectionListener implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if(Lobbysystem.getInstance().getShopSQL().getClayShop(player.getUniqueId().toString()) == 0) {
+                if (Lobbysystem.getInstance().getShopSQL().getClayShop(player.getUniqueId().toString()) == 0) {
                     Lobbysystem.getInstance().getData().sendActionbar(player, "§8•§7● ClayPass §8➜ §c✗ §8▎ §7Clan §8➜ §cKein Clan §7●§8•");
-                } else if(Lobbysystem.getInstance().getShopSQL().getClayShop(player.getUniqueId().toString()) == 1) {
+                } else if (Lobbysystem.getInstance().getShopSQL().getClayShop(player.getUniqueId().toString()) == 1) {
                     Lobbysystem.getInstance().getData().sendActionbar(player, "§8•§7● ClayPass §8➜ §a✔ §8▎ §7Clan §8➜ §cKein Clan §7●§8•");
                 }
             }
@@ -55,7 +48,11 @@ public class ConnectionListener implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                Lobbysystem.getInstance().getScoreboardManager().setScoreboard(player);
+                try {
+                    Lobbysystem.getInstance().getScoreboardManager().setScoreboard(player);
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }.runTaskLater(Lobbysystem.getInstance(), 10);
 
