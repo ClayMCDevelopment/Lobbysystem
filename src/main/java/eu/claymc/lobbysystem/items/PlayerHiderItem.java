@@ -10,6 +10,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class PlayerHiderItem implements Listener {
 
@@ -32,6 +34,7 @@ public class PlayerHiderItem implements Listener {
                 player.closeInventory();
                 player.sendMessage(ClayAPI.getInstance().getPREFIX() + "Du siehst nun keine Spieler!");
                 player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
+                playPotionEffect(player);
 
             } else if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ItemEnum.PLAYER_HIDER_HIDED.getItemStack().getItemMeta().getDisplayName())){
 
@@ -41,11 +44,22 @@ public class PlayerHiderItem implements Listener {
                 player.closeInventory();
                 player.sendMessage(ClayAPI.getInstance().getPREFIX() + "Du siehst nun alle Spieler!");
                 player.playSound(player.getLocation(), Sound.LEVEL_UP, 10, 10);
+                playPotionEffect(player);
 
             }
 
         }
 
+    }
+
+    public void playPotionEffect(Player player) {
+        player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 1, 1));
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Lobbysystem.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                player.removePotionEffect(PotionEffectType.BLINDNESS);
+            }
+        }, 15L);
     }
 
 }

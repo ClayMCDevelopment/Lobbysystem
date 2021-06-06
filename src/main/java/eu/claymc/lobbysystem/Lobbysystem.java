@@ -12,11 +12,13 @@ import eu.claymc.lobbysystem.items.report.sql.ReportSQL;
 import eu.claymc.lobbysystem.items.shop.ShopClickListener;
 import eu.claymc.lobbysystem.items.shop.ShopInteractListener;
 import eu.claymc.lobbysystem.items.shop.sql.ShopSQL;
+import eu.claymc.lobbysystem.listener.ChatListener;
 import eu.claymc.lobbysystem.listener.ConnectionListener;
 import eu.claymc.lobbysystem.listener.ProtectionListener;
 import eu.claymc.lobbysystem.manager.ParticleManager;
 import eu.claymc.lobbysystem.manager.ScoreboardManager;
 import eu.claymc.lobbysystem.utils.Data;
+import eu.claymc.lobbysystem.utils.RunTask;
 import eu.claymc.lobbysystem.utils.SkullBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -47,6 +49,7 @@ public class Lobbysystem extends JavaPlugin {
         this.scoreboardManager = new ScoreboardManager();
         this.scoreboardManager.startScoreboardAnimation();
         this.scoreboardManager.update();
+        new RunTask();
 
         this.shopSQL = new ShopSQL();
         this.reportSQL = new ReportSQL();
@@ -83,7 +86,8 @@ public class Lobbysystem extends JavaPlugin {
         pluginManager.registerEvents(new ShopInteractListener(), this);
         pluginManager.registerEvents(new ShopClickListener(), this);
         pluginManager.registerEvents(new ProfileClickListener(), this);
-        pluginManager.registerEvents(new ReportItem(), this);
+        //pluginManager.registerEvents(new ReportItem(), this);
+        pluginManager.registerEvents(new ChatListener(), this);
 
     }
     public void schedule() {

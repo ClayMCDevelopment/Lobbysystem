@@ -44,7 +44,12 @@ public class ScoreboardManager {
         addScoreboardTeam(scoreboard, "7Supporter", "§eSup §8● §e");
         addScoreboardTeam(scoreboard, "8SrBuilder", "§2SrBuild §8● §2");
         addScoreboardTeam(scoreboard, "9Builder", "§2Build §8● §2");
-        addScoreboardTeam(scoreboard, "99Clayer", "§e");
+        addScoreboardTeam(scoreboard, "10YouTuber", "§5YT §8● §5");
+        addScoreboardTeam(scoreboard, "11Legende", "§dLegend §8● §d");
+        addScoreboardTeam(scoreboard, "12Champ", "§cChamp §8● §c");
+        addScoreboardTeam(scoreboard, "13Cast", "§3Cast §8● §3");
+        addScoreboardTeam(scoreboard, "14Vibe", "§6Vibe §8● §6");
+        addScoreboardTeam(scoreboard, "99default", "§e");
 
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName("§6•§e● ClayMC §8▎ §7Lobby");
@@ -74,12 +79,34 @@ public class ScoreboardManager {
             objective.getScore(" §8➜ §cModerator").setScore(10);
             scoreboard.getTeam("6Moderator").addEntry(player.getName());
         } else if (permissionPlayer.hasPermissionGroup("Supporter")) {
-            objective.getScore(" §8➜ §3Supporter").setScore(10);
+            objective.getScore(" §8➜ §eSupporter").setScore(10);
             scoreboard.getTeam("7Supporter").addEntry(player.getName());
-        } else if (permissionPlayer.hasPermissionGroup("Clayer")) {
-            objective.getScore(" §8➜ §eClayer").setScore(10);
+        } else if (permissionPlayer.hasPermissionGroup("SrBuilder")) {
+            objective.getScore(" §8➜ §2SrBuilder").setScore(10);
+            scoreboard.getTeam("8SrBuilder").addEntry(player.getName());
+        } else if (permissionPlayer.hasPermissionGroup("Builder")) {
+            objective.getScore(" §8➜ §2Builder").setScore(10);
             scoreboard.getTeam("9Builder").addEntry(player.getName());
+        } else if (permissionPlayer.hasPermissionGroup("YouTuber")) {
+            objective.getScore(" §8➜ §5YT").setScore(10);
+            scoreboard.getTeam("10YouTuber").addEntry(player.getName());
+        } else if (permissionPlayer.hasPermissionGroup("Legende")) {
+            objective.getScore(" §8➜ §dLegende").setScore(10);
+            scoreboard.getTeam("11Legende").addEntry(player.getName());
+        } else if (permissionPlayer.hasPermissionGroup("Champ")) {
+            objective.getScore(" §8➜ §cChamp").setScore(10);
+            scoreboard.getTeam("12Champ").addEntry(player.getName());
+        } else if (permissionPlayer.hasPermissionGroup("Cast")) {
+            objective.getScore(" §8➜ §3Cast").setScore(10);
+            scoreboard.getTeam("13Cast").addEntry(player.getName());
+        } else if (permissionPlayer.hasPermissionGroup("Vibe")) {
+            objective.getScore(" §8➜ §6Vibe").setScore(10);
+            scoreboard.getTeam("14Vibe").addEntry(player.getName());
+        } else if (permissionPlayer.hasPermissionGroup("default")) {
+            objective.getScore(" §8➜ §eClayer").setScore(10);
+            scoreboard.getTeam("99default").addEntry(player.getName());
         }
+
 
         objective.getScore("§2").setScore(9);
         objective.getScore(" §8•§7● §7Clays").setScore(8);
@@ -124,11 +151,58 @@ public class ScoreboardManager {
                 scoreboard.getTeam("6Moderator").addEntry(onlinePlayer.getName());
             } else if (permissionPlayer.hasPermissionGroup("Supporter")) {
                 scoreboard.getTeam("7Supporter").addEntry(onlinePlayer.getName());
-            } else if (permissionPlayer.hasPermissionGroup("Clayer")) {
+            } else if (permissionPlayer.hasPermissionGroup("SrBuilder")) {
+                scoreboard.getTeam("8SrBuilder").addEntry(onlinePlayer.getName());
+            }  else if (permissionPlayer.hasPermissionGroup("Builder")) {
                 scoreboard.getTeam("9Builder").addEntry(onlinePlayer.getName());
+            } else if (permissionPlayer.hasPermissionGroup("YouTuber")) {
+                scoreboard.getTeam("10YouTuber").addEntry(onlinePlayer.getName());
+            }  else if (permissionPlayer.hasPermissionGroup("Legende")) {
+                scoreboard.getTeam("11Legende").addEntry(onlinePlayer.getName());
+            }  else if (permissionPlayer.hasPermissionGroup("Champ")) {
+                scoreboard.getTeam("12Champ").addEntry(onlinePlayer.getName());
+            }  else if (permissionPlayer.hasPermissionGroup("Cast")) {
+                scoreboard.getTeam("13Cast").addEntry(onlinePlayer.getName());
+            }  else if (permissionPlayer.hasPermissionGroup("Vibe")) {
+                scoreboard.getTeam("14Vibe").addEntry(onlinePlayer.getName());
+            }  else if (permissionPlayer.hasPermissionGroup("default")) {
+                scoreboard.getTeam("99default").addEntry(onlinePlayer.getName());
             }
 
+
             scoreboard = onlinePlayer.getScoreboard();
+            if (orginalPermissionPlayer.hasPermissionGroup("Owner")) {
+                scoreboard.getTeam("0Owner").addEntry(onlinePlayer.getName());
+            } else if (orginalPermissionPlayer.hasPermissionGroup("Admin")) {
+                scoreboard.getTeam("1Admin").addEntry(onlinePlayer.getName());
+            } else if (orginalPermissionPlayer.hasPermissionGroup("SrDeveloper")) {
+                scoreboard.getTeam("2SrDeveloper").addEntry(onlinePlayer.getName());
+            } else if (orginalPermissionPlayer.hasPermissionGroup("Developer")) {
+                scoreboard.getTeam("3Developer").addEntry(onlinePlayer.getName());
+            } else if (orginalPermissionPlayer.hasPermissionGroup("SrModerator")) {
+                scoreboard.getTeam("5SrModerator").addEntry(onlinePlayer.getName());
+            } else if (orginalPermissionPlayer.hasPermissionGroup("Moderator")) {
+                scoreboard.getTeam("6Moderator").addEntry(onlinePlayer.getName());
+            } else if (orginalPermissionPlayer.hasPermissionGroup("Supporter")) {
+                scoreboard.getTeam("7Supporter").addEntry(onlinePlayer.getName());
+            } else if (orginalPermissionPlayer.hasPermissionGroup("SrBuilder")) {
+                scoreboard.getTeam("8SrBuilder").addEntry(onlinePlayer.getName());
+            }  else if (orginalPermissionPlayer.hasPermissionGroup("Builder")) {
+                scoreboard.getTeam("9Builder").addEntry(onlinePlayer.getName());
+            } else if (orginalPermissionPlayer.hasPermissionGroup("YouTuber")) {
+                scoreboard.getTeam("10YouTuber").addEntry(onlinePlayer.getName());
+            }  else if (orginalPermissionPlayer.hasPermissionGroup("Legende")) {
+                scoreboard.getTeam("11Legende").addEntry(onlinePlayer.getName());
+            }  else if (orginalPermissionPlayer.hasPermissionGroup("Champ")) {
+                scoreboard.getTeam("12Champ").addEntry(onlinePlayer.getName());
+            }  else if (orginalPermissionPlayer.hasPermissionGroup("Cast")) {
+                scoreboard.getTeam("13Cast").addEntry(onlinePlayer.getName());
+            }  else if (orginalPermissionPlayer.hasPermissionGroup("Vibe")) {
+                scoreboard.getTeam("14Vibe").addEntry(onlinePlayer.getName());
+            }  else if (orginalPermissionPlayer.hasPermissionGroup("default")) {
+                scoreboard.getTeam("99default").addEntry(onlinePlayer.getName());
+            }
+            /*
             if (orginalPermissionPlayer.hasPermissionGroup("Owner")) {
                 scoreboard.getTeam("0Owner").addEntry(player.getName());
             } else if (orginalPermissionPlayer.hasPermissionGroup("Admin")) {
@@ -143,9 +217,10 @@ public class ScoreboardManager {
                 scoreboard.getTeam("6Moderator").addEntry(player.getName());
             } else if (orginalPermissionPlayer.hasPermissionGroup("Supporter")) {
                 scoreboard.getTeam("7Supporter").addEntry(player.getName());
-            } else if (orginalPermissionPlayer.hasPermissionGroup("Clayer")) {
+            } else if (orginalPermissionPlayer.hasPermissionGroup("default")) {
                 scoreboard.getTeam("9Builder").addEntry(player.getName());
             }
+             */
 
             onlinePlayer.setScoreboard(scoreboard);
 
